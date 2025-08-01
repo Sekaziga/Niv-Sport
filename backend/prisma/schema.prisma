@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Player {
+  id        Int      @id @default(autoincrement())
+  name      String
+  position  String
+  number    Int
+  nationality String
+  image     String?
+}
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String   // Store hashed password
+  createdAt DateTime @default(now())
+}
+model News {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  date        DateTime
+}
+
+model Media {
+  id        Int      @id @default(autoincrement())
+  title     String
+  type      String   // e.g., 'image', 'video'
+  url       String
+  uploadedAt DateTime @default(now())
+}
+
+model Contact {
+  id      Int      @id @default(autoincrement())
+  name    String
+  email   String
+  message String
+  sentAt  DateTime @default(now())
+}
