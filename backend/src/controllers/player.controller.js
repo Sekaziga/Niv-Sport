@@ -26,16 +26,27 @@ export const getPlayerById = async (req, res) => {
 };
 
 // 🆕 Create a new player
+
+
 export const createPlayer = async (req, res) => {
   try {
-    console.log('Incoming player data:', req.body);
-    const newPlayer = await prisma.player.create({
-      data: req.body,
+    const { name, position, number, nationality } = req.body;
+    const image = req.file ? req.file.filename : null;
+
+    const player = await prisma.player.create({
+      data: {
+        name,
+        position,
+        number: parseInt(number),
+        nationality,
+        image,
+      },
     });
-    res.status(201).json(newPlayer);
-  } catch (err) {
-    console.log('Failed to create player:', err);
-    res.status(400).json({ error: 'Failed to create player' });
+
+    res.status(201).json(player);
+  } catch (error) {
+    console.error('Error creating player:', error);
+    res.status(500).json({ error: 'Failed to create player' });
   }
 };
 

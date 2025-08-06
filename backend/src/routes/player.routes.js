@@ -7,12 +7,14 @@ import {
   updatePlayer,
   deletePlayer,
 } from '../controllers/player.controller.js';
+import upload from '../middlewares/upload.js';
+
 
 const router = express.Router();
 
 router.get('/', getAllPlayers);
 router.get('/:id', getPlayerById);
-router.post('/', createPlayer);
+router.post('/', upload.single('image'),createPlayer);
 router.put('/:id', updatePlayer);
 router.delete('/:id', deletePlayer);
 

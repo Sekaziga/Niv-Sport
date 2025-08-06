@@ -39,14 +39,23 @@ const Players = () => {
               <div key={player.id} className="bg-white shadow-md rounded-2xl p-4 text-center">
                 {player.image && (
                   <img
-                    src={player.image}
-                    alt={player.name}
-                    className="w-32 h-32 object-cover mx-auto rounded-full mb-4"
-                  />
+  src={`http://localhost:3001/uploads/${player.image}`} // add a `/` before the path
+  alt={player.name}
+  className="w-32 h-32 object-cover mx-auto rounded-full mb-4"
+/>
+
                 )}
                 <h3 className="text-lg font-bold">{player.name}</h3>
                 <p className="text-sm text-gray-500">#{player.number}</p>
                 <p className="text-sm text-gray-400">{player.nationality}</p>
+                {player.image && (
+                  <img
+                    src={`/${player.image}`}
+                    alt={player.name}
+                    className="w-32 h-32 object-cover mx-auto rounded-full mb-4"
+                  />
+                )}
+                
               </div>
             ))}
           </div>

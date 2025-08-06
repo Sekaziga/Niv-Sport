@@ -30,7 +30,7 @@ export default function AdminLogin() {
       setError('');
 
       // ✅ Redirect to admin dashboard
-      navigate('/admin/dashboard');
+      navigate('/admin');
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
       setSuccess('');
