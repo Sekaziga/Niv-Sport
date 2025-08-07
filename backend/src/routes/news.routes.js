@@ -6,4 +6,5 @@ router.get('/', getAllNews);
 router.post('/', createNews);
 router.put('/:id', updateNews);
 router.delete('/:id', deleteNews);
+
 export default router;
